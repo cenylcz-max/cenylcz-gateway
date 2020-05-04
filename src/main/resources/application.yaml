@@ -1,0 +1,15 @@
+server:
+  port: 8080
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      base-path: /manage
+      exposure:
+        include: health, info
+kafka:
+  topics:
+    ticket: ticket
+  bootstrap-servers: localhost:9092
