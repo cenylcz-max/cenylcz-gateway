@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "cenylcz-gateway.fullname" . }}-test-connection"
+  labels:
+{{ include "cenylcz-gateway.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args:  ['{{ include "cenylcz-gateway.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
