@@ -6,11 +6,12 @@
 
     <groupId>com.cenylcz</groupId>
     <artifactId>cenylcz-gateway</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
 
     <properties>
         <java-version>11</java-version>
+        <commons-lang-version>3.0</commons-lang-version>
     </properties>
 
     <parent>
@@ -33,9 +34,15 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang-version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.cenylcz</groupId>
             <artifactId>cenylcz.domain</artifactId>
-            <version>1.0.9</version>
+            <version>1.1.1</version>
         </dependency>
 
     </dependencies>

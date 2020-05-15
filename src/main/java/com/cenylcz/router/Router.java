@@ -18,6 +18,6 @@ public class Router {
     }
 
     private RouterFunction<ServerResponse> ticketRouterFunctions(TicketDispatcher ticketDispatcher) {
-        return RouterFunctions.route(POST("/tickets").and(contentType(MediaType.APPLICATION_JSON)), ticketDispatcher::create);
+        return RouterFunctions.route(POST("/tickets/{entity}").and(contentType(MediaType.APPLICATION_JSON)), ticketDispatcher::create);
     }
 }
