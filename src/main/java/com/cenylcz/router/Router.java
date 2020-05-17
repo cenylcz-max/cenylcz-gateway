@@ -14,7 +14,7 @@ public class Router {
 
     @Bean
     public RouterFunction<ServerResponse> RouterConfiguration(TicketDispatcher ticketDispatcher) {
-        return RouterFunctions.nest(path("/gateway"),ticketRouterFunctions(ticketDispatcher));
+        return RouterFunctions.nest(path("/cenylcz-gateway"),ticketRouterFunctions(ticketDispatcher));
     }
 
     private RouterFunction<ServerResponse> ticketRouterFunctions(TicketDispatcher ticketDispatcher) {
