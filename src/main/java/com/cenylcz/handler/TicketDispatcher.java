@@ -29,4 +29,16 @@ public class TicketDispatcher {
             return ServerResponse.badRequest().build();
         }
     }
+
+    public Mono<ServerResponse> update(ServerRequest serverRequest) {
+        String entity = Ticket.class.getPackage().getName().concat(".").concat(StringUtils.capitalize(serverRequest.pathVariable("entity")));
+        try {
+            Class<? extends Ticket> modelClass = (Class<? extends Ticket>) Class.forName(entity);
+            return serverRequest.bodyToMono(modelClass)
+                    .doOnNext(model -> kafkaService.updateTicketEvent(model))
+                    .flatMap(result -> ServerResponse.status(HttpStatus.NO_CONTENT).body(Mono.just(true), Boolean.class));
+        } catch (ClassNotFoundException e) {
+            return ServerResponse.badRequest().build();
+        }
+    }
 }
