@@ -1,11 +1,11 @@
 package com.cenylcz.service;
 
-import com.cenylcz.domain.business.Stock;
+import com.cenylcz.domain.business.StockTrade;
 import com.cenylcz.domain.business.Ticket;
 import com.cenylcz.event.EventInfo;
 import com.cenylcz.event.MetaData;
-import com.cenylcz.event.Trade.StockCreate;
-import com.cenylcz.event.Trade.StockUpdate;
+import com.cenylcz.event.Trade.StockTradeCreate;
+import com.cenylcz.event.Trade.StockTradeUpdate;
 import com.cenylcz.kafka.KafkaPublisher;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -24,15 +24,15 @@ public class KafkaService {
 
     public void createTicketEvent(Ticket ticket) {
         MetaData metaData = new MetaData(EventInfo.GATEWAY_EVENT_SOURCE, EventInfo.GATEWAY_EVENT_VERSION);
-        if (ticket instanceof Stock) {
-            this.kafkaPublisher.publishEvent(this.topic, new StockCreate(metaData, (Stock)ticket));
+        if (ticket instanceof StockTrade) {
+            this.kafkaPublisher.publishEvent(this.topic, new StockTradeCreate(metaData, (StockTrade) ticket));
         }
     }
 
     public void updateTicketEvent(Ticket ticket) {
         MetaData metaData = new MetaData(EventInfo.GATEWAY_EVENT_SOURCE, EventInfo.GATEWAY_EVENT_VERSION);
-        if (ticket instanceof Stock) {
-            this.kafkaPublisher.publishEvent(this.topic, new StockUpdate(metaData, (Stock)ticket));
+        if (ticket instanceof StockTrade) {
+            this.kafkaPublisher.publishEvent(this.topic, new StockTradeUpdate(metaData, (StockTrade) ticket));
         }
     }
 }
