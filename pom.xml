@@ -10,7 +10,7 @@
 
     <properties>
         <java-version>11</java-version>
-        <commons-lang-version>3.0</commons-lang-version>
+        <commons-lang-version>3.18.0</commons-lang-version>
     </properties>
 
     <parent>
